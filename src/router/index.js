@@ -6,13 +6,18 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'About',
-    component: () => import('../views/About.vue')
+    name: 'page',
+    component: () => import('../views/page.vue')
   },
   {
-    path: '/about',
-    name: 'About',
-    component: () => import('../views/About.vue')
+    path: '/button',
+    name: 'Button',
+    component: () => import('../views/button.vue')
+  },
+  {
+    path: '/dialog',
+    name: 'Dialog',
+    component: () => import('../views/dialog.vue')
   }
 ]
 
