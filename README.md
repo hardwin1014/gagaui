@@ -1,24 +1,25 @@
-# gagaui
+# gagaui组件UI
 
-## Project setup
-```
-npm install
-```
+##### 用惯了饿了么，来尝尝自己封装的组件
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
 
-### Compiles and minifies for production
-```
-npm run build
-```
 
-### Lints and fixes files
-```
-npm run lint
-```
+### 总结知识点
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+1. 组件中，this.$slots可以拿到所有的插槽，可以根据是否传入具名插槽，来判断是否显示
+
+2. 组件中，this.type   可以拿到传过来的type属性
+
+3. 组件中，传进来的props，要使用对象进行约束，类型和默认值，props是单项数据流，只读，修改的话发送给父组件
+
+4. 想要父组件操作子组件的事件，使用this.$emit('方法名'，参数)，在父组件中写方法
+
+5. 父组件中可以使用直接传参，也可以使用动态传参（v-bind），向子组件传递值
+
+6. 子组件中，注意class的数组和对象的写法
+
+7. @click.self,只点击自己有效，点击子元素不能触发，dialog点击遮罩层关闭
+
+8. 父组件使用.sync语法糖    **：demo= “demo” @updata：demo = "fn1"**相当于  **:demo.sync= "demo"**,两边名字相同的话，不用来回传了
+
+   

@@ -1,20 +1,21 @@
 <template>
-  <div class="ga-dialog__wrapper">
-    <div class="ga-dialog">
-      <div class="ga-dialog__header">
+  <!--遮罩层  .self点击自己才触发，点击子元素不触发 -->
+  <div class="ga-dialog_wrapper" v-show="visible" @click.self="handleClose">
+    <div class="ga-dialog" :style="{width:width,marginTop:top}">
+      <div class="ga-dialog_header">
         <slot name="title">
-          <span class="ga-dialog__title">{{ title }}</span>
+          <span class="ga-dialog_title">{{ title }}</span>
         </slot>
-        <button class="ga-dialog__headerbtn">
+        <button class="ga-dialog_headerbtn" @click="handleClose">
           <i class="cs-icon-guanbi"></i>
         </button>
       </div>
-      <div class="ga-dialog__body">
-        <span>这是一段信息</span>
+      <div class="ga-dialog_body">
+        <slot></slot>
       </div>
-      <div class="ga-dialog__footer">
-        <ga-buttom>取消</ga-buttom>
-        <ga-buttom type="primary">确定</ga-buttom>
+      <div class="ga-dialog_footer" v-if="$slots.footer">
+        <!-- 具名插槽-->
+        <slot name="footer"></slot>
       </div>
     </div>
   </div>
@@ -27,6 +28,28 @@ export default {
     title: {
       type: String,
       default: '提示'
+    },
+    width: {
+      type: String,
+      default: '50%'
+    },
+    top: {
+      type: String,
+      default: '15vh'
+    },
+    visible: {
+      type: Boolean,
+      default: true
+    }
+  },
+  data () {
+    return {
+
+    }
+  },
+  methods: {
+    handleClose () {
+      this.$emit('close', false)
     }
   }
 }
@@ -51,7 +74,7 @@ export default {
     box-shadow: 0 1px 3px rgba(0,0,0,0.3);
     box-sizing: border-box;
     width: 30%;
-    &_header{
+    .ga-dialog_header{
       padding: 20px 20px 10px;
       .ga-dialog_title{
         line-height: 24px;
@@ -60,7 +83,7 @@ export default {
       }
       .ga-dialog_headerbtn{
         position: absolute;
-        top: 20px;
+        top: 23px;
         right: 20px;
         padding: 0;
         background: transparent;
@@ -73,17 +96,17 @@ export default {
         }
       }
     }
-    &_body{
+    .ga-dialog_body{
       padding: 30px 20px;
       color: #606266;
       font-size: 14px;
       word-break: break-all;
     }
-    &_footer{
+    .ga-dialog_footer{
       padding: 10px 20px 20px;
       text-align: right;
       box-sizing: border-box;
-      ::v-deep .ga-button:first-child{
+      ::v-deep .one-button:first-child{
         margin-right: 20px;
       }
     }
