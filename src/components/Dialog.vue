@@ -1,24 +1,26 @@
 <template>
   <!--遮罩层  .self点击自己才触发，点击子元素不触发 -->
-  <div class="ga-dialog_wrapper" v-show="visible" @click.self="handleClose">
-    <div class="ga-dialog" :style="{width:width,marginTop:top}">
-      <div class="ga-dialog_header">
-        <slot name="title">
-          <span class="ga-dialog_title">{{ title }}</span>
-        </slot>
-        <button class="ga-dialog_headerbtn" @click="handleClose">
-          <i class="cs-icon-guanbi"></i>
-        </button>
-      </div>
-      <div class="ga-dialog_body">
-        <slot></slot>
-      </div>
-      <div class="ga-dialog_footer" v-if="$slots.footer">
-        <!-- 具名插槽-->
-        <slot name="footer"></slot>
+  <transition name="dialog-fade">
+    <div class="ga-dialog_wrapper" v-show="visible" @click.self="handleClose">
+      <div class="ga-dialog" :style="{width:width,marginTop:top}">
+        <div class="ga-dialog_header">
+          <slot name="title">
+            <span class="ga-dialog_title">{{ title }}</span>
+          </slot>
+          <button class="ga-dialog_headerbtn" @click="handleClose">
+            <i class="cs-icon-guanbi"></i>
+          </button>
+        </div>
+        <div class="ga-dialog_body">
+          <slot></slot>
+        </div>
+        <div class="ga-dialog_footer" v-if="$slots.footer">
+          <!-- 具名插槽-->
+          <slot name="footer"></slot>
+        </div>
       </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -39,7 +41,7 @@ export default {
     },
     visible: {
       type: Boolean,
-      default: true
+      default: false
     }
   },
   data () {
@@ -49,13 +51,13 @@ export default {
   },
   methods: {
     handleClose () {
-      this.$emit('close', false)
+      this.$emit('update:visible', false)
     }
   }
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .ga-dialog_wrapper{
   position: fixed;
   top: 0;
@@ -106,17 +108,20 @@ export default {
       padding: 10px 20px 20px;
       text-align: right;
       box-sizing: border-box;
-      ::v-deep .one-button:first-child{
+      .one-button:first-child{
         margin-right: 20px;
       }
     }
   }
 }
+// 进入
 .dialog-fade-enter-active{
-  animation: fade .3s;
+  animation: fade .4s;
 }
+// 离开
 .dialog-fade-leave-active{
-  animation: fade .3s reverse;
+  // 方向反转reverse
+  animation: fade .4s reverse;
 }
 @keyframes fade{
   0% {

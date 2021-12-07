@@ -1,15 +1,9 @@
 <template>
   <div class="container">
     <ga-button @click="visible = true">按钮</ga-button>
-<!--    <ga-dialog title="温馨提示"></ga-dialog>-->
-<!--    <ga-dialog>-->
-<!--      <template v-slot:title>-->
-<!--        <h3>我是标题</h3>-->
-<!--      </template>-->
-<!--    </ga-dialog>-->
 
       <!--.sync修饰符-->
-      <ga-dialog width="60%" top="10vh" :visible="visible" @close = "close">
+      <ga-dialog width="60%" top="10vh" :visible.sync="visible">
         大家好
       <template v-slot:footer>
         <ga-button @click="visible = false">取消</ga-button>
@@ -23,13 +17,10 @@
 export default {
   data () {
     return {
-      visible: true
+      visible: false
     }
   },
   methods: {
-    close (value) {
-      this.visible = value
-    }
   }
 }
 </script>

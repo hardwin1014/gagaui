@@ -2,7 +2,7 @@
 <div class="container">
   <button @click="routerBtn('/button')">button组件页面</button>
   <button @click="routerBtn('/dialog')">dialog组件页面</button>
-  <button @click="buttonBtn">button组件页面</button>
+  <button @click="routerBtn('/input')">input组件页面</button>
   <button @click="buttonBtn">button组件页面</button>
   <button @click="buttonBtn">button组件页面</button>
   <button @click="buttonBtn">button组件页面</button>

@@ -18,6 +18,11 @@ const routes = [
     path: '/dialog',
     name: 'Dialog',
     component: () => import('../views/dialog.vue')
+  },
+  {
+    path: '/input',
+    name: 'Input',
+    component: () => import('../views/input.vue')
   }
 ]
 
