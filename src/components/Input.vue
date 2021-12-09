@@ -1,12 +1,20 @@
 <template>
-<div class="ga-input">
+<div class="ga-input" :class="{ 'ga-input-suffix': showSuffix}">
+  <!--通过控制showPassword 是否显示，来判断要不要加type,type显示使用data中定义的变量来控制-->
   <input class="ga-input_inner"
          :class="{'is-disabled':disabled}"
          :placeholder="placeholder"
-         :type="type"
+         :type="showPassword ? (passwordVisible ? 'text':'password'):type"
          :name="name"
          :disabled="disabled"
+         :value="value"
+         @input="handleInput"
   >
+  <span class="ga-input_suffix">
+    <i class="cs-icon-guanbi" v-if="clearable" @click="clear"></i>
+    <i class="cs-icon-yanjing" v-if="showPassword" @click="handlePassword"
+       :class="{ 'ga-icon-view-active': passwordVisible }"></i>
+  </span>
 </div>
 </template>
 
@@ -29,6 +37,42 @@ export default {
     disabled: {
       type: Boolean,
       default: false
+    },
+    value: {
+      type: String,
+      default: ''
+    },
+    clearable: {
+      type: Boolean,
+      default: false
+    },
+    showPassword: {
+      type: Boolean,
+      default: false
+    }
+  },
+  data () {
+    return {
+      // 用于控制是否显示密码框
+      passwordVisible: false
+    }
+  },
+  methods: {
+    // 父组件中的input事件，v-model语法糖
+    handleInput (e) {
+      this.$emit('input', e.target.value)
+    },
+    clear () {
+      // 内容清空
+      this.$emit('input', '')
+    },
+    handlePassword () {
+      this.passwordVisible = !this.passwordVisible
+    }
+  },
+  computed: {
+    showSuffix () {
+      return this.clearable || this.showPassword
     }
   }
 }
@@ -70,7 +114,6 @@ export default {
   }
 }
 // 后面加suffix的意思是后面如果有后缀的话，触发该样式
-.ga-input_suffix{
   .ga-input_inner{
     padding-right: 30px;
   }
@@ -91,5 +134,4 @@ export default {
       transition: color .2s cubic-bezier(.645,.045,.355,1);
     }
   }
-}
 </style>
