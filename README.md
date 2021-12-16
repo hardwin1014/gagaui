@@ -22,4 +22,7 @@
 
 8. 父组件使用.sync语法糖    **：demo= “demo” @updata：demo = "fn1"**相当于  **:demo.sync= "demo"**,两边名字相同的话，不用来回传了
 
+9. 祖孙组件之间传值，provide和inject，和react中的上下文传值很像
+
    
+

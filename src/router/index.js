@@ -28,6 +28,21 @@ const routes = [
     path: '/switch',
     name: 'Switch',
     component: () => import('../views/switch.vue')
+  },
+  {
+    path: '/radio',
+    name: 'Radio',
+    component: () => import('../views/radio.vue')
+  },
+  {
+    path: '/checkbox',
+    name: 'CheckBox',
+    component: () => import('../views/checkbox.vue')
+  },
+  {
+    path: '/form',
+    name: 'Form',
+    component: () => import('../views/form.vue')
   }
 ]
 

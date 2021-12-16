@@ -4,12 +4,9 @@
   <button @click="routerBtn('/dialog')">dialog组件页面</button>
   <button @click="routerBtn('/input')">input组件页面</button>
   <button @click="routerBtn('/switch')">switch组件页面</button>
-  <button @click="buttonBtn">button组件页面</button>
-  <button @click="buttonBtn">button组件页面</button>
-  <button @click="buttonBtn">button组件页面</button>
-  <button @click="buttonBtn">button组件页面</button>
-  <button @click="buttonBtn">button组件页面</button>
-  <button @click="buttonBtn">button组件页面</button>
+  <button @click="routerBtn('/radio')">radio组件页面</button>
+  <button @click="routerBtn('/checkbox')">checkbox组件页面</button>
+  <button @click="routerBtn('/form')">form组件页面</button>
 </div>
 </template>
 
