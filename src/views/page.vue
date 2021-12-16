@@ -3,7 +3,7 @@
   <button @click="routerBtn('/button')">button组件页面</button>
   <button @click="routerBtn('/dialog')">dialog组件页面</button>
   <button @click="routerBtn('/input')">input组件页面</button>
-  <button @click="buttonBtn">button组件页面</button>
+  <button @click="routerBtn('/switch')">switch组件页面</button>
   <button @click="buttonBtn">button组件页面</button>
   <button @click="buttonBtn">button组件页面</button>
   <button @click="buttonBtn">button组件页面</button>
